@@ -441,36 +441,6 @@
         line-height: 1.58;
       }
 
-      .other-list {
-        display: grid;
-        gap: 10px;
-        margin: 0;
-        padding: 0;
-        list-style: none;
-      }
-
-      .other-list li {
-        display: grid;
-        grid-template-columns: minmax(160px, 0.35fr) minmax(0, 1fr);
-        gap: 16px;
-        border-bottom: 1px solid var(--line);
-        padding: 12px 0;
-      }
-
-      .other-list li:last-child {
-        border-bottom: 0;
-      }
-
-      .other-list a {
-        color: var(--blue);
-        font-weight: 760;
-      }
-
-      .other-list span {
-        color: var(--muted);
-        line-height: 1.45;
-      }
-
       .contact {
         border-top: 1px solid var(--line);
         background: #e9edf2;
@@ -563,8 +533,7 @@
           height: 190px;
         }
 
-        .metric-band,
-        .other-list li {
+        .metric-band {
           grid-template-columns: 1fr;
         }
 
@@ -582,7 +551,6 @@
         <div class="nav-links">
           <a href="#work">Work</a>
           <a href="#evidence">Evidence</a>
-          <a href="#other">Other</a>
           <a href="#contact">Contact</a>
         </div>
       </nav>
@@ -739,10 +707,10 @@
           </article>
 
           <article class="project-card">
-            <div class="project-media contain">
+            <div class="project-media">
               <img
-                src="./assets/projects/blockchainbelly-window.svg"
-                alt="BlockchainBelly interface symbol"
+                src="./assets/projects/blockchanbelly-example.png"
+                alt="BlockchainBelly generated coin interface"
                 loading="lazy"
               />
             </div>
@@ -929,63 +897,15 @@
         </div>
       </section>
 
-      <section class="section" id="other" aria-labelledby="other-title">
-        <div class="two-column">
-          <div class="text-panel">
-            <h2 class="section-title" id="other-title">Other Work</h2>
-            <p>
-              These repositories are useful as supporting context. They should
-              stay compact on the site so the six core projects remain the main
-              signal.
-            </p>
-          </div>
-          <div class="text-panel">
-            <h3>Supporting Repositories</h3>
-            <ul class="other-list">
-              <li>
-                <a href="https://github.com/rlaau/language_test">language_test</a>
-                <span>Go language experiments and compiler/runtime exploration.</span>
-              </li>
-              <li>
-                <a href="https://github.com/rlaau/dsl">dsl</a>
-                <span>Early work toward domain-specific language ideas.</span>
-              </li>
-              <li>
-                <a href="https://github.com/rlaau/goMarkdown">goMarkdown</a>
-                <span>Markdown rich text editor experiment in Go.</span>
-              </li>
-              <li>
-                <a href="https://github.com/rlaau/go-text-editor">go-text-editor</a>
-                <span>Text editor implementation study.</span>
-              </li>
-              <li>
-                <a href="https://github.com/rlaau/oh-my-shell">oh-my-shell</a>
-                <span>Shell/system tooling work.</span>
-              </li>
-              <li>
-                <a href="https://github.com/rlaau/blockus_game">blockus_game</a>
-                <span>Game implementation and systems practice.</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
     </main>
 
     <footer class="contact" id="contact">
       <section class="section">
         <div class="contact-row">
-          <div>
-            <h2 class="section-title">Contact</h2>
-            <p class="section-note">
-              I am interested in static analysis, verification, benchmarks, graph
-              systems, streaming pipelines, reactive frameworks, and markets that
-              can be made inspectable.
-            </p>
-          </div>
+          <h2 class="section-title">Contact</h2>
           <div class="contact-links">
-            <a class="button primary" href="mailto:rlaaudgjs5638@gmail.com">Email</a>
-            <a class="button" href="https://github.com/rlaau">GitHub</a>
+            <a class="button primary" href="https://github.com/rlaau">GitHub</a>
+            <a class="button" href="mailto:rlaaudgjs5638@gmail.com">Email</a>
           </div>
         </div>
       </section>
