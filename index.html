@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#101418" />
     <meta
       name="description"
-      content="Build to make complex systems understandable and analyzable. Work across static analysis, graph analysis, streaming pipelines, reactive systems, and quant trading."
+      content="Build to make complex systems analyzable. Work across static analysis, graph analysis, streaming pipelines, reactive systems, and quant trading."
     />
     <meta property="og:title" content="rlaau" />
     <meta
@@ -15,8 +15,9 @@
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://rlaau.github.io/" />
-    <link rel="icon" href="./favicon.svg?v=2" type="image/svg+xml" />
-    <link rel="alternate icon" href="./favicon.ico?v=2" />
+    <link rel="icon" href="./favicon.svg?v=3" type="image/svg+xml" />
+    <link rel="alternate icon" href="./favicon.ico?v=3" />
+    <link rel="shortcut icon" href="./favicon.ico?v=3" />
     <link rel="apple-touch-icon" href="./logo192.png" />
     <link rel="manifest" href="./manifest.json" />
     <title>rlaau</title>
@@ -266,6 +267,24 @@
         background: var(--panel);
         box-shadow: var(--shadow);
         overflow: hidden;
+        color: inherit;
+        text-decoration: none;
+        transition:
+          border-color 160ms ease,
+          box-shadow 160ms ease,
+          transform 160ms ease;
+      }
+
+      .project-card:hover {
+        border-color: #9ea7b3;
+        box-shadow: 0 18px 44px rgba(18, 22, 28, 0.12);
+        text-decoration: none;
+        transform: translateY(-2px);
+      }
+
+      .project-card:focus-visible {
+        outline: 3px solid rgba(30, 91, 158, 0.28);
+        outline-offset: 3px;
       }
 
       .project-media {
@@ -377,7 +396,7 @@
         font-size: 0.9rem;
       }
 
-      .project-footer a {
+      .project-link-label {
         color: var(--blue);
         font-weight: 760;
       }
@@ -647,7 +666,7 @@
           <div>
             <p class="kicker">Korea University Computer Science</p>
             <h1 id="hero-title">
-              Build to make complex systems understandable and analyzable.
+              Build to make complex systems analyzable.
             </h1>
             <p class="hero-copy">
               Work across static analysis, graph analysis, streaming pipelines,
@@ -694,7 +713,7 @@
         </div>
 
         <div class="project-grid">
-          <article class="project-card">
+          <a class="project-card" href="https://github.com/rlaau/PublicAnalyzer">
             <div class="project-media">
               <img
                 src="./assets/projects/publicanalyzer-demo.png"
@@ -725,11 +744,11 @@
             </div>
             <div class="project-footer">
               <span>Wallet relation analysis and graph infrastructure</span>
-              <a href="https://github.com/rlaau/PublicAnalyzer">Repository</a>
+              <span class="project-link-label">Repository</span>
             </div>
-          </article>
+          </a>
 
-          <article class="project-card">
+          <a class="project-card" href="https://github.com/rlaau/S_A_Benchmark">
             <div class="project-media contain">
               <svg
                 viewBox="0 0 900 420"
@@ -787,11 +806,11 @@
             </div>
             <div class="project-footer">
               <span>Extreme distribution performance research</span>
-              <a href="https://github.com/rlaau/S_A_Benchmark">Repository</a>
+              <span class="project-link-label">Repository</span>
             </div>
-          </article>
+          </a>
 
-          <article class="project-card">
+          <a class="project-card" href="https://github.com/rlaau/blockchainBelly_B">
             <div class="project-media">
               <img
                 src="./assets/projects/blockchanbelly-example.png"
@@ -822,11 +841,11 @@
             </div>
             <div class="project-footer">
               <span>AI, news, and token deployment pipeline</span>
-              <a href="https://github.com/rlaau/blockchainBelly_B">Repository</a>
+              <span class="project-link-label">Repository</span>
             </div>
-          </article>
+          </a>
 
-          <article class="project-card">
+          <a class="project-card" href="https://github.com/gnolang/gno/pull/3769">
             <div class="project-media">
               <img
                 src="./assets/projects/gno-fuzzer-algorithm.png"
@@ -857,11 +876,11 @@
             </div>
             <div class="project-footer">
               <span>Large proposed contribution to gnolang/gno</span>
-              <a href="https://github.com/gnolang/gno/pull/3769">Pull request</a>
+              <span class="project-link-label">Pull request</span>
             </div>
-          </article>
+          </a>
 
-          <article class="project-card">
+          <a class="project-card" href="https://github.com/HershyOrg/hersh">
             <div class="project-media contain">
               <svg viewBox="0 0 900 420" role="img" aria-labelledby="hersh-title hersh-desc">
                 <title id="hersh-title">Hersh architecture</title>
@@ -910,11 +929,11 @@
             </div>
             <div class="project-footer">
               <span>Reactive framework used by Hershy</span>
-              <a href="https://github.com/HershyOrg/hersh">Repository</a>
+              <span class="project-link-label">Repository</span>
             </div>
-          </article>
+          </a>
 
-          <article class="project-card">
+          <a class="project-card" href="https://github.com/HershyOrg/hershy">
             <div class="project-media">
               <img
                 src="./assets/projects/hershy-dashboard.png"
@@ -945,9 +964,9 @@
             </div>
             <div class="project-footer">
               <span>Secure program lifecycle management</span>
-              <a href="https://github.com/HershyOrg/hershy">Repository</a>
+              <span class="project-link-label">Repository</span>
             </div>
-          </article>
+          </a>
         </div>
       </section>
 
