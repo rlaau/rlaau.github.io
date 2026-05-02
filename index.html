@@ -15,8 +15,8 @@
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://rlaau.github.io/" />
-    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
-    <link rel="alternate icon" href="./favicon.ico" />
+    <link rel="icon" href="./favicon.svg?v=2" type="image/svg+xml" />
+    <link rel="alternate icon" href="./favicon.ico?v=2" />
     <link rel="apple-touch-icon" href="./logo192.png" />
     <link rel="manifest" href="./manifest.json" />
     <title>rlaau</title>
@@ -124,10 +124,7 @@
       }
 
       .hero-grid {
-        display: grid;
-        grid-template-columns: minmax(0, 1.25fr) minmax(320px, 0.75fr);
-        gap: 42px;
-        align-items: end;
+        display: block;
       }
 
       .kicker {
@@ -187,6 +184,7 @@
 
       .signal-panel {
         position: relative;
+        margin-top: 34px;
         border: 1px solid #b8c2ce;
         border-top: 5px solid var(--blue);
         border-radius: var(--radius);
@@ -203,6 +201,7 @@
 
       .signal-list {
         display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 12px;
         margin: 0;
         padding: 0;
@@ -424,6 +423,17 @@
         font-size: 0.9rem;
       }
 
+      a.metric {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      a.metric:hover {
+        border-left-color: var(--ink);
+        text-decoration: none;
+        transform: translateY(-1px);
+      }
+
       .two-column {
         display: grid;
         grid-template-columns: 0.95fr 1.05fr;
@@ -541,7 +551,6 @@
       }
 
       @media (max-width: 900px) {
-        .hero-grid,
         .project-grid,
         .background-grid,
         .two-column {
@@ -558,6 +567,10 @@
 
         .metric-band {
           grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .signal-list {
+          grid-template-columns: 1fr;
         }
       }
 
@@ -837,7 +850,7 @@
                 <span class="tag">CLI</span>
               </div>
               <ul class="evidence">
-                <li>24 files changed with 7,766 additions and 527 deletions.</li>
+                <li>Designed as a Gno-native fuzzing path rather than an external harness.</li>
                 <li>Added `gno test -fuzz`, `testing.F`, mutator, parser, logger, and manager components.</li>
                 <li>Closed as outdated after feature-freeze delay, so presented as proposed work.</li>
               </ul>
@@ -941,30 +954,29 @@
       <section class="section" id="evidence" aria-labelledby="evidence-title">
         <div class="section-head">
           <div>
-            <h2 class="section-title" id="evidence-title">Evidence Over Claims</h2>
+            <h2 class="section-title" id="evidence-title">External Proof</h2>
             <p class="section-note">
-              The portfolio should make the technical pattern obvious: model the
-              system, isolate its hard path, then build a tool or benchmark that
-              exposes the behavior.
+              Evidence should come from public technical settings, official
+              programs, and measured workloads, not just code volume.
             </p>
           </div>
         </div>
         <div class="metric-band">
-          <div class="metric">
-            <strong>7,766+</strong>
-            <span>Lines added in the Gno fuzzer PR across 24 changed files.</span>
-          </div>
+          <a class="metric" href="https://www.youtube.com/watch?v=9_xKRzRfsUY&t=1033s">
+            <strong>CURG</strong>
+            <span>Official presentation context for graph and program analysis work in a blockchain academy.</span>
+          </a>
+          <a class="metric" href="https://www.blockmedia.co.kr/archives/857438">
+            <strong>KOBAC</strong>
+            <span>Blockchain Belly was validated through the official KOBAC competition context.</span>
+          </a>
           <div class="metric">
             <strong>4.77x</strong>
-            <span>Overall speedup measured for the sharded Bloom filter benchmark.</span>
+            <span>Measured overall speedup in the sharded Bloom filter benchmark.</span>
           </div>
           <div class="metric">
             <strong>50k TPS</strong>
-            <span>Transaction generator configuration used in PublicAnalyzer testing.</span>
-          </div>
-          <div class="metric">
-            <strong>79 commits</strong>
-            <span>Listed contributions across Hersh and Hershy public contributor APIs.</span>
+            <span>Transaction generator configuration used for PublicAnalyzer stress testing.</span>
           </div>
         </div>
       </section>
