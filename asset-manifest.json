@@ -2,6 +2,7 @@
   "files": {
     "index.html": "./index.html",
     "manifest.json": "./manifest.json",
+    "favicon.svg": "./favicon.svg",
     "favicon.ico": "./favicon.ico",
     "logo192.png": "./logo192.png",
     "logo512.png": "./logo512.png",

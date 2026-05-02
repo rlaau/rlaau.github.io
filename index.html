@@ -15,7 +15,8 @@
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://rlaau.github.io/" />
-    <link rel="icon" href="./favicon.ico" />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="alternate icon" href="./favicon.ico" />
     <link rel="apple-touch-icon" href="./logo192.png" />
     <link rel="manifest" href="./manifest.json" />
     <title>rlaau</title>
@@ -185,21 +186,24 @@
       }
 
       .signal-panel {
-        border: 1px solid var(--line);
+        position: relative;
+        border: 1px solid #b8c2ce;
+        border-top: 5px solid var(--blue);
         border-radius: var(--radius);
         background: var(--panel);
-        box-shadow: var(--shadow);
-        padding: 22px;
+        box-shadow: 0 18px 46px rgba(18, 22, 28, 0.12);
+        padding: 26px;
       }
 
       .signal-panel h2 {
-        margin: 0 0 16px;
-        font-size: 1rem;
+        margin: 0 0 18px;
+        font-size: 1.18rem;
+        letter-spacing: 0;
       }
 
       .signal-list {
         display: grid;
-        gap: 14px;
+        gap: 12px;
         margin: 0;
         padding: 0;
         list-style: none;
@@ -207,7 +211,11 @@
 
       .signal-list li {
         display: grid;
-        gap: 4px;
+        gap: 7px;
+        border: 1px solid #e1e6ec;
+        border-radius: var(--radius);
+        background: #f8fafc;
+        padding: 14px;
       }
 
       .label {
@@ -218,7 +226,8 @@
       }
 
       .value {
-        font-size: 0.98rem;
+        font-size: 1.04rem;
+        font-weight: 720;
         line-height: 1.4;
       }
 
@@ -441,6 +450,62 @@
         line-height: 1.58;
       }
 
+      .background-grid {
+        display: grid;
+        grid-template-columns: 0.75fr 1.25fr;
+        gap: 18px;
+        align-items: start;
+      }
+
+      .timeline {
+        display: grid;
+        gap: 12px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .timeline-item {
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: var(--panel);
+        box-shadow: var(--shadow);
+        padding: 18px;
+      }
+
+      .timeline-top {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        align-items: start;
+      }
+
+      .timeline-title {
+        margin: 0;
+        font-size: 1.08rem;
+        line-height: 1.25;
+      }
+
+      .timeline-date {
+        color: var(--muted);
+        font-size: 0.86rem;
+        font-weight: 700;
+        white-space: nowrap;
+      }
+
+      .timeline-role {
+        margin: 5px 0 0;
+        color: var(--blue);
+        font-size: 0.92rem;
+        font-weight: 760;
+      }
+
+      .timeline-desc {
+        margin: 10px 0 0;
+        color: #35404b;
+        line-height: 1.5;
+      }
+
       .contact {
         border-top: 1px solid var(--line);
         background: #e9edf2;
@@ -478,6 +543,7 @@
       @media (max-width: 900px) {
         .hero-grid,
         .project-grid,
+        .background-grid,
         .two-column {
           grid-template-columns: 1fr;
         }
@@ -541,6 +607,11 @@
           align-items: start;
           flex-direction: column;
         }
+
+        .timeline-top {
+          display: grid;
+          gap: 4px;
+        }
       }
     </style>
   </head>
@@ -551,6 +622,7 @@
         <div class="nav-links">
           <a href="#work">Work</a>
           <a href="#evidence">Evidence</a>
+          <a href="#background">Background</a>
           <a href="#contact">Contact</a>
         </div>
       </nav>
@@ -893,6 +965,70 @@
           <div class="metric">
             <strong>79 commits</strong>
             <span>Listed contributions across Hersh and Hershy public contributor APIs.</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="background" aria-labelledby="background-title">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title" id="background-title">Background</h2>
+            <p class="section-note">
+              Education and work history behind the systems and project work.
+            </p>
+          </div>
+        </div>
+
+        <div class="background-grid">
+          <div class="text-panel">
+            <h3>Education</h3>
+            <ul class="timeline">
+              <li class="timeline-item">
+                <div class="timeline-top">
+                  <h4 class="timeline-title">Korea University</h4>
+                  <span class="timeline-date">Feb 2023 - Dec 2028</span>
+                </div>
+                <p class="timeline-role">BA, Computer Science</p>
+              </li>
+            </ul>
+          </div>
+
+          <div class="text-panel">
+            <h3>Work History</h3>
+            <ul class="timeline">
+              <li class="timeline-item">
+                <div class="timeline-top">
+                  <h4 class="timeline-title">CURG</h4>
+                  <span class="timeline-date">Apr 2025 - Present</span>
+                </div>
+                <p class="timeline-role">Core Technical Member</p>
+                <p class="timeline-desc">
+                  Providing support for graph and program analysis in a blockchain academy.
+                </p>
+              </li>
+              <li class="timeline-item">
+                <div class="timeline-top">
+                  <h4 class="timeline-title">Onblock</h4>
+                  <span class="timeline-date">Aug 2024 - Feb 2025</span>
+                </div>
+                <p class="timeline-role">Development Partner</p>
+                <p class="timeline-desc">
+                  Developed a fuzzing program.
+                </p>
+              </li>
+              <li class="timeline-item">
+                <div class="timeline-top">
+                  <h4 class="timeline-title">BlockChain Belly</h4>
+                  <span class="timeline-date">Jul 2024 - Jan 2025</span>
+                </div>
+                <p class="timeline-role">Technical Lead</p>
+                <p class="timeline-desc">
+                  Led the development team in a blockchain academy, mentoring
+                  members on token development and deployment, data collection,
+                  and processing automation.
+                </p>
+              </li>
+            </ul>
           </div>
         </div>
       </section>
