@@ -1,15 +1,23 @@
 {
   "files": {
-    "main.css": "/static/css/main.10b912d1.css",
-    "main.js": "/static/js/main.d69545e5.js",
-    "static/js/787.774594b4.chunk.js": "/static/js/787.774594b4.chunk.js",
-    "index.html": "/index.html",
-    "main.10b912d1.css.map": "/static/css/main.10b912d1.css.map",
-    "main.d69545e5.js.map": "/static/js/main.d69545e5.js.map",
-    "787.774594b4.chunk.js.map": "/static/js/787.774594b4.chunk.js.map"
+    "index.html": "./index.html",
+    "manifest.json": "./manifest.json",
+    "favicon.ico": "./favicon.ico",
+    "logo192.png": "./logo192.png",
+    "logo512.png": "./logo512.png",
+    "publicanalyzer-demo.png": "./assets/projects/publicanalyzer-demo.png",
+    "gno-fuzzer-algorithm.png": "./assets/projects/gno-fuzzer-algorithm.png",
+    "gno-fuzzer-output.png": "./assets/projects/gno-fuzzer-output.png",
+    "hershy-dashboard.png": "./assets/projects/hershy-dashboard.png",
+    "hershy-programdetail.png": "./assets/projects/hershy-programdetail.png",
+    "hershy-watcher-overview.png": "./assets/projects/hershy-watcher-overview.png",
+    "hershy-watcher-advanced.png": "./assets/projects/hershy-watcher-advanced.png",
+    "hershy-watcher-signals.png": "./assets/projects/hershy-watcher-signals.png",
+    "hershy-strategy-chart.png": "./assets/projects/hershy-strategy-chart.png",
+    "blockchainbelly-globe.svg": "./assets/projects/blockchainbelly-globe.svg",
+    "blockchainbelly-window.svg": "./assets/projects/blockchainbelly-window.svg"
   },
   "entrypoints": [
-    "static/css/main.10b912d1.css",
-    "static/js/main.d69545e5.js"
+    "index.html"
   ]
 }

@@ -1,1 +1,996 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"/><link rel="icon" href="/favicon.ico"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="theme-color" content="#000000"/><meta name="description" content="Web site created using create-react-app"/><link rel="apple-touch-icon" href="/logo192.png"/><link rel="manifest" href="/manifest.json"/><title>React App</title><script defer="defer" src="/static/js/main.d69545e5.js"></script><link href="/static/css/main.10b912d1.css" rel="stylesheet"></head><body><noscript>You need to enable JavaScript to run this app.</noscript><div id="root"></div></body></html>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#101418" />
+    <meta
+      name="description"
+      content="rlaau builds systems that turn complex behavior into analyzable structure: code, graphs, benchmarks, streams, and markets."
+    />
+    <meta property="og:title" content="rlaau" />
+    <meta
+      property="og:description"
+      content="Computer Science student at Korea University building static analysis, graph analysis, benchmarking, streaming, and quant systems."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://rlaau.github.io/" />
+    <link rel="icon" href="./favicon.ico" />
+    <link rel="apple-touch-icon" href="./logo192.png" />
+    <link rel="manifest" href="./manifest.json" />
+    <title>rlaau</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #12161c;
+        --muted: #5f6874;
+        --line: #d9dee5;
+        --panel: #ffffff;
+        --paper: #f4f6f8;
+        --blue: #1e5b9e;
+        --green: #12765b;
+        --red: #a63d36;
+        --yellow: #8a6416;
+        --violet: #6654a8;
+        --radius: 8px;
+        --shadow: 0 10px 30px rgba(18, 22, 28, 0.08);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+        background: var(--paper);
+        color: var(--ink);
+        letter-spacing: 0;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+      }
+
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        border-bottom: 1px solid rgba(217, 222, 229, 0.86);
+        background: rgba(244, 246, 248, 0.94);
+        backdrop-filter: blur(14px);
+      }
+
+      .nav {
+        width: min(1180px, calc(100% - 32px));
+        min-height: 58px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+      }
+
+      .brand {
+        font-weight: 760;
+        font-size: 1rem;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        color: var(--muted);
+        font-size: 0.92rem;
+      }
+
+      .nav-links a {
+        white-space: nowrap;
+      }
+
+      main {
+        overflow: hidden;
+      }
+
+      .section {
+        width: min(1180px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 72px 0;
+      }
+
+      .hero {
+        min-height: calc(100vh - 58px);
+        display: grid;
+        align-content: center;
+        padding: 72px 0 56px;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.25fr) minmax(320px, 0.75fr);
+        gap: 42px;
+        align-items: end;
+      }
+
+      .kicker {
+        margin: 0 0 20px;
+        color: var(--blue);
+        font-weight: 700;
+        font-size: 0.95rem;
+      }
+
+      h1 {
+        margin: 0;
+        max-width: 870px;
+        font-size: 4.1rem;
+        line-height: 1.02;
+        font-weight: 820;
+      }
+
+      .hero-copy {
+        margin: 24px 0 0;
+        max-width: 760px;
+        color: #38414c;
+        font-size: 1.22rem;
+        line-height: 1.55;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 28px;
+      }
+
+      .button {
+        min-height: 42px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: 0 16px;
+        background: var(--panel);
+        color: var(--ink);
+        font-weight: 700;
+        font-size: 0.94rem;
+      }
+
+      .button.primary {
+        background: var(--ink);
+        border-color: var(--ink);
+        color: #ffffff;
+      }
+
+      .button:hover {
+        text-decoration: none;
+        border-color: #9ea7b3;
+      }
+
+      .signal-panel {
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: var(--panel);
+        box-shadow: var(--shadow);
+        padding: 22px;
+      }
+
+      .signal-panel h2 {
+        margin: 0 0 16px;
+        font-size: 1rem;
+      }
+
+      .signal-list {
+        display: grid;
+        gap: 14px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .signal-list li {
+        display: grid;
+        gap: 4px;
+      }
+
+      .label {
+        color: var(--muted);
+        font-size: 0.78rem;
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+
+      .value {
+        font-size: 0.98rem;
+        line-height: 1.4;
+      }
+
+      .section-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        gap: 24px;
+        margin-bottom: 28px;
+      }
+
+      .section-title {
+        margin: 0;
+        font-size: 2rem;
+        line-height: 1.15;
+      }
+
+      .section-note {
+        margin: 8px 0 0;
+        max-width: 670px;
+        color: var(--muted);
+        line-height: 1.55;
+      }
+
+      .project-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .project-card {
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        min-height: 100%;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: var(--panel);
+        box-shadow: var(--shadow);
+        overflow: hidden;
+      }
+
+      .project-media {
+        height: 245px;
+        background: #dfe5ec;
+        border-bottom: 1px solid var(--line);
+        overflow: hidden;
+      }
+
+      .project-media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .project-media.contain {
+        display: grid;
+        place-items: center;
+        padding: 20px;
+      }
+
+      .project-media.contain img {
+        object-fit: contain;
+      }
+
+      .project-body {
+        padding: 22px;
+      }
+
+      .project-topline {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 12px;
+      }
+
+      .project-kind {
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 4px 9px;
+        color: var(--muted);
+        font-size: 0.75rem;
+        font-weight: 700;
+        white-space: nowrap;
+      }
+
+      .project-card h3 {
+        margin: 0;
+        font-size: 1.35rem;
+      }
+
+      .tag-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 7px;
+        margin: 14px 0 0;
+      }
+
+      .tag {
+        border-radius: 999px;
+        background: #eef1f4;
+        color: #3c4652;
+        padding: 5px 9px;
+        font-size: 0.78rem;
+        font-weight: 690;
+      }
+
+      .project-summary {
+        margin: 14px 0 0;
+        color: #35404b;
+        line-height: 1.55;
+      }
+
+      .evidence {
+        margin: 18px 0 0;
+        padding: 0;
+        list-style: none;
+        display: grid;
+        gap: 10px;
+      }
+
+      .evidence li {
+        display: grid;
+        grid-template-columns: 8px 1fr;
+        gap: 10px;
+        color: #3a444f;
+        line-height: 1.45;
+        font-size: 0.94rem;
+      }
+
+      .evidence li::before {
+        content: "";
+        width: 8px;
+        height: 8px;
+        margin-top: 7px;
+        border-radius: 50%;
+        background: var(--green);
+      }
+
+      .project-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 14px;
+        border-top: 1px solid var(--line);
+        padding: 16px 22px;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      .project-footer a {
+        color: var(--blue);
+        font-weight: 760;
+      }
+
+      .metric-band {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 14px;
+        margin-top: 22px;
+      }
+
+      .metric {
+        border-left: 4px solid var(--blue);
+        background: var(--panel);
+        border-radius: var(--radius);
+        padding: 16px;
+        box-shadow: var(--shadow);
+      }
+
+      .metric:nth-child(2) {
+        border-left-color: var(--green);
+      }
+
+      .metric:nth-child(3) {
+        border-left-color: var(--red);
+      }
+
+      .metric:nth-child(4) {
+        border-left-color: var(--yellow);
+      }
+
+      .metric strong {
+        display: block;
+        font-size: 1.45rem;
+        line-height: 1.15;
+      }
+
+      .metric span {
+        display: block;
+        margin-top: 6px;
+        color: var(--muted);
+        line-height: 1.4;
+        font-size: 0.9rem;
+      }
+
+      .two-column {
+        display: grid;
+        grid-template-columns: 0.95fr 1.05fr;
+        gap: 22px;
+        align-items: start;
+      }
+
+      .text-panel {
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: var(--panel);
+        box-shadow: var(--shadow);
+        padding: 24px;
+      }
+
+      .text-panel h3 {
+        margin: 0 0 12px;
+        font-size: 1.25rem;
+      }
+
+      .text-panel p {
+        margin: 0;
+        color: #35404b;
+        line-height: 1.58;
+      }
+
+      .other-list {
+        display: grid;
+        gap: 10px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .other-list li {
+        display: grid;
+        grid-template-columns: minmax(160px, 0.35fr) minmax(0, 1fr);
+        gap: 16px;
+        border-bottom: 1px solid var(--line);
+        padding: 12px 0;
+      }
+
+      .other-list li:last-child {
+        border-bottom: 0;
+      }
+
+      .other-list a {
+        color: var(--blue);
+        font-weight: 760;
+      }
+
+      .other-list span {
+        color: var(--muted);
+        line-height: 1.45;
+      }
+
+      .contact {
+        border-top: 1px solid var(--line);
+        background: #e9edf2;
+      }
+
+      .contact .section {
+        padding-bottom: 54px;
+      }
+
+      .contact-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 24px;
+        align-items: center;
+      }
+
+      .contact-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      @media (max-width: 900px) {
+        .hero-grid,
+        .project-grid,
+        .two-column {
+          grid-template-columns: 1fr;
+        }
+
+        .hero {
+          min-height: auto;
+        }
+
+        h1 {
+          font-size: 3.05rem;
+        }
+
+        .metric-band {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 640px) {
+        .nav {
+          width: min(100% - 24px, 1180px);
+        }
+
+        .nav-links {
+          gap: 10px;
+          font-size: 0.84rem;
+        }
+
+        .section {
+          width: min(100% - 24px, 1180px);
+          padding: 48px 0;
+        }
+
+        .hero {
+          padding-top: 48px;
+        }
+
+        h1 {
+          font-size: 2.35rem;
+          line-height: 1.07;
+        }
+
+        .hero-copy {
+          font-size: 1.05rem;
+        }
+
+        .section-head,
+        .contact-row {
+          display: grid;
+          align-items: start;
+        }
+
+        .project-media {
+          height: 190px;
+        }
+
+        .metric-band,
+        .other-list li {
+          grid-template-columns: 1fr;
+        }
+
+        .project-footer {
+          align-items: start;
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="nav" aria-label="Primary navigation">
+        <a class="brand" href="#">rlaau</a>
+        <div class="nav-links">
+          <a href="#work">Work</a>
+          <a href="#evidence">Evidence</a>
+          <a href="#other">Other</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="section hero" aria-labelledby="hero-title">
+        <div class="hero-grid">
+          <div>
+            <p class="kicker">Korea University Computer Science</p>
+            <h1 id="hero-title">
+              I build systems that turn complex behavior into analyzable structure.
+            </h1>
+            <p class="hero-copy">
+              I work across program static analysis, verification, specialized
+              benchmarks, graph analysis, streaming pipeline design, reactive
+              frameworks, and quant trading systems. My goal is simple: if I
+              cannot fully understand a system, I want to make it interpretable.
+            </p>
+            <div class="hero-actions">
+              <a class="button primary" href="#work">View featured work</a>
+              <a class="button" href="https://github.com/rlaau">GitHub</a>
+              <a class="button" href="mailto:rlaaudgjs5638@gmail.com">Email</a>
+            </div>
+          </div>
+
+          <aside class="signal-panel" aria-labelledby="signal-title">
+            <h2 id="signal-title">Current Direction</h2>
+            <ul class="signal-list">
+              <li>
+                <span class="label">Primary lens</span>
+                <span class="value">Static analysis, graphs, benchmarks, streaming systems</span>
+              </li>
+              <li>
+                <span class="label">Operating style</span>
+                <span class="value">Build the tool, measure the edge case, expose the structure</span>
+              </li>
+              <li>
+                <span class="label">Contact</span>
+                <span class="value">rlaaudgjs5638@gmail.com</span>
+              </li>
+            </ul>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section" id="work" aria-labelledby="work-title">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title" id="work-title">Featured Work</h2>
+            <p class="section-note">
+              Six core projects: three owned repositories and three external or
+              collaborative contributions. Each is selected for technical depth,
+              not polish alone.
+            </p>
+          </div>
+          <a class="button" href="https://github.com/rlaau?tab=repositories">All repositories</a>
+        </div>
+
+        <div class="project-grid">
+          <article class="project-card">
+            <div class="project-media">
+              <img
+                src="./assets/projects/publicanalyzer-demo.png"
+                alt="PublicAnalyzer graph demo showing clustered blockchain relationships"
+                loading="lazy"
+              />
+            </div>
+            <div class="project-body">
+              <div class="project-topline">
+                <h3>PublicAnalyzer</h3>
+                <span class="project-kind">Owned</span>
+              </div>
+              <p class="project-summary">
+                Blockchain transaction relationship analyzer for clustering
+                wallets and detecting linked accounts before abuse.
+              </p>
+              <div class="tag-row">
+                <span class="tag">Go</span>
+                <span class="tag">Graph analysis</span>
+                <span class="tag">RopeDB</span>
+                <span class="tag">Kafka</span>
+              </div>
+              <ul class="evidence">
+                <li>Triplet logic detects CEX, deposit, and user relationships.</li>
+                <li>RopeDB stores trait-linked graph components with async mark updates.</li>
+                <li>Includes stream fanout, backpressure, graph UI, and benchmark notes.</li>
+              </ul>
+            </div>
+            <div class="project-footer">
+              <span>Wallet relation analysis and graph infrastructure</span>
+              <a href="https://github.com/rlaau/PublicAnalyzer">Repository</a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-media contain">
+              <svg
+                viewBox="0 0 900 420"
+                role="img"
+                aria-labelledby="benchmark-title benchmark-desc"
+              >
+                <title id="benchmark-title">Benchmark bars</title>
+                <desc id="benchmark-desc">Chart comparing benchmark speedups</desc>
+                <rect width="900" height="420" fill="#f7f8fa" />
+                <g transform="translate(90 55)">
+                  <text x="0" y="0" font-size="26" font-weight="700" fill="#12161c">
+                    Specialized Algorithm Benchmarks
+                  </text>
+                  <text x="0" y="38" font-size="15" fill="#5f6874">
+                    Extreme distribution workloads for algorithms and databases
+                  </text>
+                  <g transform="translate(0 92)">
+                    <rect x="0" y="0" width="550" height="42" rx="6" fill="#1e5b9e" />
+                    <text x="570" y="28" font-size="18" font-weight="700" fill="#12161c">
+                      4.30x Bloom insert
+                    </text>
+                    <rect x="0" y="72" width="610" height="42" rx="6" fill="#12765b" />
+                    <text x="630" y="100" font-size="18" font-weight="700" fill="#12161c">
+                      4.77x overall
+                    </text>
+                    <rect x="0" y="144" width="430" height="42" rx="6" fill="#a63d36" />
+                    <text x="450" y="172" font-size="18" font-weight="700" fill="#12161c">
+                      200M DB ops
+                    </text>
+                  </g>
+                </g>
+              </svg>
+            </div>
+            <div class="project-body">
+              <div class="project-topline">
+                <h3>S_A_Benchmark</h3>
+                <span class="project-kind">Owned</span>
+              </div>
+              <p class="project-summary">
+                Benchmark suite for cases where ordinary benchmarks fail:
+                skewed blockchain-like data, cache-miss-heavy reads, and
+                append-only write paths.
+              </p>
+              <div class="tag-row">
+                <span class="tag">Go</span>
+                <span class="tag">Bloom filter</span>
+                <span class="tag">KV stores</span>
+                <span class="tag">Sorting</span>
+              </div>
+              <ul class="evidence">
+                <li>Sharded Bloom filter measured at 4.30x faster insertion.</li>
+                <li>Includes bbolt, BadgerDB, and PebbleDB workload comparisons.</li>
+                <li>Tracks memory, throughput, false positive rate, and file workloads.</li>
+              </ul>
+            </div>
+            <div class="project-footer">
+              <span>Extreme distribution performance research</span>
+              <a href="https://github.com/rlaau/S_A_Benchmark">Repository</a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-media contain">
+              <img
+                src="./assets/projects/blockchainbelly-window.svg"
+                alt="BlockchainBelly interface symbol"
+                loading="lazy"
+              />
+            </div>
+            <div class="project-body">
+              <div class="project-topline">
+                <h3>blockchainBelly_B</h3>
+                <span class="project-kind">Owned</span>
+              </div>
+              <p class="project-summary">
+                AI-generated news meme coin platform that turns live news into
+                token metadata, generated images, and deployable ERC20 contracts.
+              </p>
+              <div class="tag-row">
+                <span class="tag">Next.js</span>
+                <span class="tag">OpenAI</span>
+                <span class="tag">Hardhat</span>
+                <span class="tag">MongoDB</span>
+              </div>
+              <ul class="evidence">
+                <li>Parses Google News RSS and extracts structured coin metadata.</li>
+                <li>Uses OpenAI image generation, S3 upload, and MongoDB persistence.</li>
+                <li>Deploys ERC20 meme coins with reservation and pool logic.</li>
+              </ul>
+            </div>
+            <div class="project-footer">
+              <span>AI, news, and token deployment pipeline</span>
+              <a href="https://github.com/rlaau/blockchainBelly_B">Repository</a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-media">
+              <img
+                src="./assets/projects/gno-fuzzer-algorithm.png"
+                alt="Gno fuzzer algorithm diagram"
+                loading="lazy"
+              />
+            </div>
+            <div class="project-body">
+              <div class="project-topline">
+                <h3>Gno Fuzzer PR</h3>
+                <span class="project-kind">External</span>
+              </div>
+              <p class="project-summary">
+                Proposed GnoVM-native fuzzer and CLI flow for testing Gno code
+                with seed mutation, coverage hashing, and priority scheduling.
+              </p>
+              <div class="tag-row">
+                <span class="tag">GnoVM</span>
+                <span class="tag">Fuzzing</span>
+                <span class="tag">Coverage</span>
+                <span class="tag">CLI</span>
+              </div>
+              <ul class="evidence">
+                <li>24 files changed with 7,766 additions and 527 deletions.</li>
+                <li>Added `gno test -fuzz`, `testing.F`, mutator, parser, logger, and manager components.</li>
+                <li>Closed as outdated after feature-freeze delay, so presented as proposed work.</li>
+              </ul>
+            </div>
+            <div class="project-footer">
+              <span>Large proposed contribution to gnolang/gno</span>
+              <a href="https://github.com/gnolang/gno/pull/3769">Pull request</a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-media contain">
+              <svg viewBox="0 0 900 420" role="img" aria-labelledby="hersh-title hersh-desc">
+                <title id="hersh-title">Hersh architecture</title>
+                <desc id="hersh-desc">Managed function connected to watch variables and watcher API</desc>
+                <rect width="900" height="420" fill="#f7f8fa" />
+                <g font-family="Inter, system-ui, sans-serif" font-size="18" font-weight="700">
+                  <rect x="70" y="160" width="190" height="88" rx="8" fill="#ffffff" stroke="#d9dee5" />
+                  <text x="106" y="196" fill="#12161c">WatchCall</text>
+                  <text x="106" y="224" fill="#5f6874" font-size="14">polling signal</text>
+                  <rect x="355" y="145" width="190" height="118" rx="8" fill="#12161c" />
+                  <text x="394" y="196" fill="#ffffff">Managed</text>
+                  <text x="398" y="224" fill="#ffffff">Function</text>
+                  <rect x="640" y="160" width="190" height="88" rx="8" fill="#ffffff" stroke="#d9dee5" />
+                  <text x="680" y="196" fill="#12161c">WatcherAPI</text>
+                  <text x="680" y="224" fill="#5f6874" font-size="14">monitor/control</text>
+                  <path d="M260 204 H355" stroke="#1e5b9e" stroke-width="5" />
+                  <path d="M545 204 H640" stroke="#12765b" stroke-width="5" />
+                  <path d="M450 263 V330 H165 V248" stroke="#a63d36" stroke-width="5" fill="none" />
+                  <text x="334" y="58" font-size="28" fill="#12161c">Hersh</text>
+                  <text x="250" y="92" font-size="15" font-weight="500" fill="#5f6874">
+                    Deterministic reactive execution for Go
+                  </text>
+                </g>
+              </svg>
+            </div>
+            <div class="project-body">
+              <div class="project-topline">
+                <h3>Hersh</h3>
+                <span class="project-kind">Collaborative</span>
+              </div>
+              <p class="project-summary">
+                Go reactive framework for deterministic managed execution,
+                monitoring, stateful context, signal priority, and recovery.
+              </p>
+              <div class="tag-row">
+                <span class="tag">Go</span>
+                <span class="tag">Reactive runtime</span>
+                <span class="tag">Reducer-effect</span>
+                <span class="tag">WatcherAPI</span>
+              </div>
+              <ul class="evidence">
+                <li>`WatchCall`, `WatchFlow`, `WatchTick`, memo, and typed watch values.</li>
+                <li>Priority reducer loop processes lifecycle, user, and variable signals.</li>
+                <li>`rlaau` is the sole listed contributor with 31 commits.</li>
+              </ul>
+            </div>
+            <div class="project-footer">
+              <span>Reactive framework used by Hershy</span>
+              <a href="https://github.com/HershyOrg/hersh">Repository</a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-media">
+              <img
+                src="./assets/projects/hershy-dashboard.png"
+                alt="Hershy dashboard showing deployed program cards"
+                loading="lazy"
+              />
+            </div>
+            <div class="project-body">
+              <div class="project-topline">
+                <h3>Hershy</h3>
+                <span class="project-kind">Collaborative</span>
+              </div>
+              <p class="project-summary">
+                Container orchestration system for Go programs using Hersh
+                reactive state management, Docker/gVisor, Host API, and WatcherAPI.
+              </p>
+              <div class="tag-row">
+                <span class="tag">Go</span>
+                <span class="tag">Docker</span>
+                <span class="tag">gVisor</span>
+                <span class="tag">Runtime UI</span>
+              </div>
+              <ul class="evidence">
+                <li>Pure program state machine: Created to Building to Ready to Stopped.</li>
+                <li>Security contracts include read-only rootfs and localhost-only WatcherAPI proxy.</li>
+                <li>`rlaau` is the top listed contributor with 48 commits.</li>
+              </ul>
+            </div>
+            <div class="project-footer">
+              <span>Secure program lifecycle management</span>
+              <a href="https://github.com/HershyOrg/hershy">Repository</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="evidence" aria-labelledby="evidence-title">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title" id="evidence-title">Evidence Over Claims</h2>
+            <p class="section-note">
+              The portfolio should make the technical pattern obvious: model the
+              system, isolate its hard path, then build a tool or benchmark that
+              exposes the behavior.
+            </p>
+          </div>
+        </div>
+        <div class="metric-band">
+          <div class="metric">
+            <strong>7,766+</strong>
+            <span>Lines added in the Gno fuzzer PR across 24 changed files.</span>
+          </div>
+          <div class="metric">
+            <strong>4.77x</strong>
+            <span>Overall speedup measured for the sharded Bloom filter benchmark.</span>
+          </div>
+          <div class="metric">
+            <strong>50k TPS</strong>
+            <span>Transaction generator configuration used in PublicAnalyzer testing.</span>
+          </div>
+          <div class="metric">
+            <strong>79 commits</strong>
+            <span>Listed contributions across Hersh and Hershy public contributor APIs.</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="other" aria-labelledby="other-title">
+        <div class="two-column">
+          <div class="text-panel">
+            <h2 class="section-title" id="other-title">Other Work</h2>
+            <p>
+              These repositories are useful as supporting context. They should
+              stay compact on the site so the six core projects remain the main
+              signal.
+            </p>
+          </div>
+          <div class="text-panel">
+            <h3>Supporting Repositories</h3>
+            <ul class="other-list">
+              <li>
+                <a href="https://github.com/rlaau/language_test">language_test</a>
+                <span>Go language experiments and compiler/runtime exploration.</span>
+              </li>
+              <li>
+                <a href="https://github.com/rlaau/dsl">dsl</a>
+                <span>Early work toward domain-specific language ideas.</span>
+              </li>
+              <li>
+                <a href="https://github.com/rlaau/goMarkdown">goMarkdown</a>
+                <span>Markdown rich text editor experiment in Go.</span>
+              </li>
+              <li>
+                <a href="https://github.com/rlaau/go-text-editor">go-text-editor</a>
+                <span>Text editor implementation study.</span>
+              </li>
+              <li>
+                <a href="https://github.com/rlaau/oh-my-shell">oh-my-shell</a>
+                <span>Shell/system tooling work.</span>
+              </li>
+              <li>
+                <a href="https://github.com/rlaau/blockus_game">blockus_game</a>
+                <span>Game implementation and systems practice.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="contact" id="contact">
+      <section class="section">
+        <div class="contact-row">
+          <div>
+            <h2 class="section-title">Contact</h2>
+            <p class="section-note">
+              I am interested in static analysis, verification, benchmarks, graph
+              systems, streaming pipelines, reactive frameworks, and markets that
+              can be made inspectable.
+            </p>
+          </div>
+          <div class="contact-links">
+            <a class="button primary" href="mailto:rlaaudgjs5638@gmail.com">Email</a>
+            <a class="button" href="https://github.com/rlaau">GitHub</a>
+          </div>
+        </div>
+      </section>
+    </footer>
+  </body>
+</html>
