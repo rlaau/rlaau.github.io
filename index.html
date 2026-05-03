@@ -286,6 +286,8 @@
         overflow: hidden;
         color: inherit;
         text-decoration: none;
+        -webkit-user-select: text;
+        user-select: text;
         transition:
           border-color 160ms ease,
           box-shadow 160ms ease,
@@ -427,101 +429,45 @@
         font-size: 0.9rem;
       }
 
-      .project-link-label {
-        color: var(--blue);
-        font-weight: 760;
+      .project-actions {
+        display: inline-flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 8px;
+        flex-shrink: 0;
       }
 
-      .proof-grid {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 14px;
-        margin-top: 22px;
-      }
-
-      .proof-card {
-        position: relative;
-        min-height: 100%;
-        border-left: 4px solid var(--blue);
-        background: var(--panel);
+      .project-go {
+        display: inline-flex;
+        min-height: 34px;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid var(--line);
         border-radius: var(--radius);
-        padding: 17px 42px 17px 16px;
-        border-top: 1px solid var(--line);
-        border-right: 1px solid var(--line);
-        border-bottom: 1px solid var(--line);
-        box-shadow: var(--shadow);
-        color: inherit;
-        text-decoration: none;
-        scroll-margin-top: 86px;
-        transition:
-          background 160ms ease,
-          border-color 160ms ease,
-          box-shadow 160ms ease,
-          transform 160ms ease;
-      }
-
-      .proof-card:nth-child(2) {
-        border-left-color: var(--green);
-      }
-
-      .proof-card:nth-child(3) {
-        border-left-color: var(--red);
-      }
-
-      .proof-card::after {
-        content: "↗";
-        position: absolute;
-        top: 16px;
-        right: 16px;
-        color: #7a828c;
-        font-weight: 800;
-      }
-
-      .proof-card .proof-label {
-        display: block;
-        margin-top: 0;
-        color: var(--muted);
-        font-size: 0.76rem;
-        font-weight: 780;
-        text-transform: uppercase;
-      }
-
-      .proof-card strong {
-        display: block;
-        margin-top: 8px;
-        font-size: 1.45rem;
-        line-height: 1.15;
-      }
-
-      .proof-card span {
-        display: block;
-        margin-top: 6px;
-        color: var(--muted);
-        line-height: 1.4;
-        font-size: 0.9rem;
-      }
-
-      .proof-card .proof-source {
+        padding: 0 12px;
+        background: var(--panel);
         color: var(--blue);
-        margin-top: 12px;
         font-size: 0.84rem;
         font-weight: 760;
+        text-decoration: none;
+        transition:
+          background 150ms ease,
+          border-color 150ms ease,
+          box-shadow 150ms ease,
+          transform 150ms ease;
       }
 
-      .proof-card:hover {
-        border-left-color: var(--ink);
-        background: #fffefa;
+      .project-go:hover {
+        border-color: #b7bdc5;
+        background: #ffffff;
+        box-shadow: 0 6px 14px rgba(18, 22, 28, 0.07);
         text-decoration: none;
         transform: translateY(-1px);
       }
 
-      .proof-card:focus-visible {
-        outline: 3px solid rgba(30, 91, 158, 0.28);
-        outline-offset: 3px;
-      }
-
-      .proof-card.evidence-hit {
-        animation: evidence-pulse 1200ms ease;
+      .project-go:active {
+        box-shadow: none;
+        transform: translateY(0);
       }
 
       @keyframes click-fade {
@@ -533,18 +479,6 @@
         }
         100% {
           opacity: 0;
-        }
-      }
-
-      @keyframes evidence-pulse {
-        0% {
-          box-shadow: 0 0 0 0 rgba(37, 95, 145, 0.24);
-        }
-        38% {
-          box-shadow: 0 0 0 8px rgba(37, 95, 145, 0.12);
-        }
-        100% {
-          box-shadow: var(--shadow);
         }
       }
 
@@ -679,10 +613,6 @@
           font-size: 3.05rem;
         }
 
-        .proof-grid {
-          grid-template-columns: repeat(2, minmax(0, 1fr));
-        }
-
         .hero-meta {
           grid-template-columns: 1fr;
         }
@@ -735,10 +665,6 @@
           height: 190px;
         }
 
-        .proof-grid {
-          grid-template-columns: 1fr;
-        }
-
         .project-footer {
           align-items: start;
           flex-direction: column;
@@ -757,7 +683,6 @@
         <a class="brand" href="#">rlaau</a>
         <div class="nav-links">
           <a href="#work">Work</a>
-          <a href="#evidence">Evidence</a>
           <a href="#background">Background</a>
           <a href="#contact">Contact</a>
         </div>
@@ -809,7 +734,7 @@
         </div>
 
         <div class="project-grid">
-          <a class="project-card" href="#proof-publicanalyzer" data-proof-target="proof-publicanalyzer">
+          <article class="project-card">
             <div class="project-media">
               <img
                 src="./assets/projects/publicanalyzer-demo.png"
@@ -840,73 +765,127 @@
             </div>
             <div class="project-footer">
               <span>Wallet relation analysis and graph infrastructure</span>
-              <span class="project-link-label">Proof</span>
+              <div class="project-actions" aria-label="PublicAnalyzer links">
+                <a class="project-go" href="https://www.youtube.com/watch?v=9_xKRzRfsUY&t=1033s">Go video</a>
+                <a class="project-go" href="https://github.com/rlaau/PublicAnalyzer">Go repo</a>
+              </div>
             </div>
-          </a>
+          </article>
 
-          <a class="project-card" href="#proof-benchmark" data-proof-target="proof-benchmark">
-            <div class="project-media contain">
-              <svg
-                viewBox="0 0 900 420"
-                role="img"
-                aria-labelledby="benchmark-title benchmark-desc"
-              >
-                <title id="benchmark-title">Benchmark bars</title>
-                <desc id="benchmark-desc">Chart comparing benchmark speedups</desc>
-                <rect width="900" height="420" fill="#f7f8fa" />
-                <g transform="translate(90 55)">
-                  <text x="0" y="0" font-size="26" font-weight="700" fill="#12161c">
-                    Specialized Algorithm Benchmarks
-                  </text>
-                  <text x="0" y="38" font-size="15" fill="#5f6874">
-                    Extreme distribution workloads for algorithms and databases
-                  </text>
-                  <g transform="translate(0 92)">
-                    <rect x="0" y="0" width="550" height="42" rx="6" fill="#1e5b9e" />
-                    <text x="570" y="28" font-size="18" font-weight="700" fill="#12161c">
-                      4.30x Bloom insert
-                    </text>
-                    <rect x="0" y="72" width="610" height="42" rx="6" fill="#12765b" />
-                    <text x="630" y="100" font-size="18" font-weight="700" fill="#12161c">
-                      4.77x overall
-                    </text>
-                    <rect x="0" y="144" width="430" height="42" rx="6" fill="#a63d36" />
-                    <text x="450" y="172" font-size="18" font-weight="700" fill="#12161c">
-                      200M KV ops
-                    </text>
-                  </g>
-                </g>
-              </svg>
+          <article class="project-card">
+            <div class="project-media">
+              <img
+                src="./assets/projects/gno-fuzzer-algorithm.png"
+                alt="Gno fuzzer algorithm diagram"
+                loading="lazy"
+              />
             </div>
             <div class="project-body">
               <div class="project-topline">
-                <h3>S_A_Benchmark</h3>
-                <span class="project-kind">Owned</span>
+                <h3>Gno Fuzzer PR</h3>
+                <span class="project-kind">External</span>
               </div>
               <p class="project-summary">
-                Benchmark suite for cases where ordinary benchmarks fail:
-                sharded Bloom filters for blockchain-like skew and KVDB
-                workloads for append-heavy indexed storage.
+                Proposed GnoVM-native fuzzer and CLI flow for testing Gno code
+                with seed mutation, coverage hashing, and priority scheduling.
               </p>
               <div class="tag-row">
-                <span class="tag">Go</span>
-                <span class="tag">Bloom filter</span>
-                <span class="tag">KV stores</span>
-                <span class="tag">BadgerDB</span>
+                <span class="tag">GnoVM</span>
+                <span class="tag">Fuzzing</span>
+                <span class="tag">Coverage</span>
+                <span class="tag">CLI</span>
               </div>
               <ul class="evidence">
-                <li>Sharded Bloom filter measured at 4.30x faster insertion and 4.77x overall throughput.</li>
-                <li>KVDB benchmark covers 200M append/read checks across BoltDB, sharded BoltDB, and BadgerDB.</li>
-                <li>BadgerDB keeps the 200M-entry benchmark at 5.70 GB versus BoltDB's 33.30 GB result.</li>
+                <li>Designed as a Gno-native fuzzing path rather than an external harness.</li>
+                <li>Added `gno test -fuzz`, `testing.F`, mutator, parser, logger, and manager components.</li>
+                <li>Closed as outdated after feature-freeze delay, so presented as proposed work.</li>
               </ul>
             </div>
             <div class="project-footer">
-              <span>Extreme distribution performance research</span>
-              <span class="project-link-label">Proof</span>
+              <span>Large proposed contribution to gnolang/gno</span>
+              <div class="project-actions">
+                <a class="project-go" href="https://github.com/gnolang/gno/pull/3769">Go</a>
+              </div>
             </div>
-          </a>
+          </article>
 
-          <a class="project-card" href="https://github.com/rlaau/language_test">
+          <article class="project-card">
+            <div class="project-media">
+              <img
+                src="./assets/projects/poly-scalper-dashboard.png"
+                alt="Polymarket scalper dashboard showing engine, trading, and push tracker panels"
+                loading="lazy"
+              />
+            </div>
+            <div class="project-body">
+              <div class="project-topline">
+                <h3>Polymarket Scalper</h3>
+                <span class="project-kind">Deployed</span>
+              </div>
+              <p class="project-summary">
+                Automated BTC UP/DOWN round scalper that watches CEX pushes,
+                Polymarket oracle/orderbook state, and PTB proximity before
+                entering short-lived positions.
+              </p>
+              <div class="tag-row">
+                <span class="tag">Go</span>
+                <span class="tag">Polymarket</span>
+                <span class="tag">CEX push</span>
+                <span class="tag">WebSocket</span>
+              </div>
+              <ul class="evidence">
+                <li>Classifies short-window Binance/Coinbase moves as Noise, Fake, or Real.</li>
+                <li>Uses PTB proximity, oracle reflection, orderbook structure, and regime estimates.</li>
+                <li>Runs a round lifecycle from COLLECT to TRADE to BUYBACK with live dashboard history.</li>
+              </ul>
+            </div>
+            <div class="project-footer">
+              <span>Live short-horizon Polymarket strategy dashboard</span>
+              <div class="project-actions">
+                <a class="project-go" href="https://poly.kissngg.com/">Go</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-media">
+              <img
+                src="./assets/projects/blockchanbelly-example.png"
+                alt="Blockchain Valley generated coin interface"
+                loading="lazy"
+              />
+            </div>
+            <div class="project-body">
+              <div class="project-topline">
+                <h3>blockchainValley_B</h3>
+                <span class="project-kind">Owned</span>
+              </div>
+              <p class="project-summary">
+                AI-generated news meme coin platform that turns live news into
+                token metadata, generated images, and deployable ERC20 contracts.
+              </p>
+              <div class="tag-row">
+                <span class="tag">Next.js</span>
+                <span class="tag">OpenAI</span>
+                <span class="tag">Hardhat</span>
+                <span class="tag">MongoDB</span>
+              </div>
+              <ul class="evidence">
+                <li>Parses Google News RSS and extracts structured coin metadata.</li>
+                <li>Uses OpenAI image generation, S3 upload, and MongoDB persistence.</li>
+                <li>Deploys ERC20 meme coins with reservation and pool logic.</li>
+              </ul>
+            </div>
+            <div class="project-footer">
+              <span>AI, news, and token deployment pipeline</span>
+              <div class="project-actions">
+                <a class="project-go" href="https://www.blockmedia.co.kr/archives/857438">Go news</a>
+                <a class="project-go" href="https://github.com/rlaau/blockchainBelly_B">Go repo</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card">
             <div class="project-media contain">
               <svg viewBox="0 0 900 420" role="img" aria-labelledby="language-title language-desc">
                 <title id="language-title">Tiny Go language pipeline</title>
@@ -967,81 +946,114 @@
             </div>
             <div class="project-footer">
               <span>Hand-built language implementation</span>
-              <span class="project-link-label">Source</span>
+              <div class="project-actions">
+                <a class="project-go" href="https://github.com/rlaau/language_test">Go</a>
+              </div>
             </div>
-          </a>
+          </article>
 
-          <a class="project-card" href="#proof-kobac" data-proof-target="proof-kobac">
-            <div class="project-media">
-              <img
-                src="./assets/projects/blockchanbelly-example.png"
-                alt="Blockchain Valley generated coin interface"
-                loading="lazy"
-              />
+          <article class="project-card">
+            <div class="project-media contain">
+              <svg
+                viewBox="0 0 900 420"
+                role="img"
+                aria-labelledby="benchmark-title benchmark-desc"
+              >
+                <title id="benchmark-title">Benchmark bars</title>
+                <desc id="benchmark-desc">Chart comparing benchmark speedups</desc>
+                <rect width="900" height="420" fill="#f7f8fa" />
+                <g transform="translate(90 55)">
+                  <text x="0" y="0" font-size="26" font-weight="700" fill="#12161c">
+                    Specialized Algorithm Benchmarks
+                  </text>
+                  <text x="0" y="38" font-size="15" fill="#5f6874">
+                    Extreme distribution workloads for algorithms and databases
+                  </text>
+                  <g transform="translate(0 92)">
+                    <rect x="0" y="0" width="550" height="42" rx="6" fill="#1e5b9e" />
+                    <text x="570" y="28" font-size="18" font-weight="700" fill="#12161c">
+                      4.30x Bloom insert
+                    </text>
+                    <rect x="0" y="72" width="610" height="42" rx="6" fill="#12765b" />
+                    <text x="630" y="100" font-size="18" font-weight="700" fill="#12161c">
+                      4.77x overall
+                    </text>
+                    <rect x="0" y="144" width="430" height="42" rx="6" fill="#a63d36" />
+                    <text x="450" y="172" font-size="18" font-weight="700" fill="#12161c">
+                      200M KV ops
+                    </text>
+                  </g>
+                </g>
+              </svg>
             </div>
             <div class="project-body">
               <div class="project-topline">
-                <h3>blockchainValley_B</h3>
+                <h3>S_A_Benchmark</h3>
                 <span class="project-kind">Owned</span>
               </div>
               <p class="project-summary">
-                AI-generated news meme coin platform that turns live news into
-                token metadata, generated images, and deployable ERC20 contracts.
+                Benchmark suite for cases where ordinary benchmarks fail:
+                sharded Bloom filters for blockchain-like skew and KVDB
+                workloads for append-heavy indexed storage.
               </p>
               <div class="tag-row">
-                <span class="tag">Next.js</span>
-                <span class="tag">OpenAI</span>
-                <span class="tag">Hardhat</span>
-                <span class="tag">MongoDB</span>
+                <span class="tag">Go</span>
+                <span class="tag">Bloom filter</span>
+                <span class="tag">KV stores</span>
+                <span class="tag">BadgerDB</span>
               </div>
               <ul class="evidence">
-                <li>Parses Google News RSS and extracts structured coin metadata.</li>
-                <li>Uses OpenAI image generation, S3 upload, and MongoDB persistence.</li>
-                <li>Deploys ERC20 meme coins with reservation and pool logic.</li>
+                <li>Sharded Bloom filter measured at 4.30x faster insertion and 4.77x overall throughput.</li>
+                <li>KVDB benchmark covers 200M append/read checks across BoltDB, sharded BoltDB, and BadgerDB.</li>
+                <li>BadgerDB keeps the 200M-entry benchmark at 5.70 GB versus BoltDB's 33.30 GB result.</li>
               </ul>
             </div>
             <div class="project-footer">
-              <span>AI, news, and token deployment pipeline</span>
-              <span class="project-link-label">Proof</span>
+              <span>Extreme distribution performance research</span>
+              <div class="project-actions">
+                <a class="project-go" href="https://github.com/rlaau/S_A_Benchmark/blob/main/bloomfilter/result.txt">Go</a>
+              </div>
             </div>
-          </a>
+          </article>
 
-          <a class="project-card" href="https://github.com/gnolang/gno/pull/3769">
+          <article class="project-card">
             <div class="project-media">
               <img
-                src="./assets/projects/gno-fuzzer-algorithm.png"
-                alt="Gno fuzzer algorithm diagram"
+                src="./assets/projects/hershy-dashboard.png"
+                alt="Hershy dashboard showing deployed program cards"
                 loading="lazy"
               />
             </div>
             <div class="project-body">
               <div class="project-topline">
-                <h3>Gno Fuzzer PR</h3>
-                <span class="project-kind">External</span>
+                <h3>Hershy</h3>
+                <span class="project-kind">Collaborative</span>
               </div>
               <p class="project-summary">
-                Proposed GnoVM-native fuzzer and CLI flow for testing Gno code
-                with seed mutation, coverage hashing, and priority scheduling.
+                Container orchestration system for Go programs using Hersh
+                reactive state management, Docker/gVisor, Host API, and WatcherAPI.
               </p>
               <div class="tag-row">
-                <span class="tag">GnoVM</span>
-                <span class="tag">Fuzzing</span>
-                <span class="tag">Coverage</span>
-                <span class="tag">CLI</span>
+                <span class="tag">Go</span>
+                <span class="tag">Docker</span>
+                <span class="tag">gVisor</span>
+                <span class="tag">Runtime UI</span>
               </div>
               <ul class="evidence">
-                <li>Designed as a Gno-native fuzzing path rather than an external harness.</li>
-                <li>Added `gno test -fuzz`, `testing.F`, mutator, parser, logger, and manager components.</li>
-                <li>Closed as outdated after feature-freeze delay, so presented as proposed work.</li>
+                <li>Pure program state machine: Created to Building to Ready to Stopped.</li>
+                <li>Security contracts include read-only rootfs and localhost-only WatcherAPI proxy.</li>
+                <li>`rlaau` is the top listed contributor with 48 commits.</li>
               </ul>
             </div>
             <div class="project-footer">
-              <span>Large proposed contribution to gnolang/gno</span>
-              <span class="project-link-label">Source</span>
+              <span>Secure program lifecycle management</span>
+              <div class="project-actions">
+                <a class="project-go" href="https://github.com/HershyOrg/hershy/graphs/contributors">Go</a>
+              </div>
             </div>
-          </a>
+          </article>
 
-          <a class="project-card" href="https://github.com/HershyOrg/hersh/graphs/contributors">
+          <article class="project-card">
             <div class="project-media contain">
               <svg viewBox="0 0 900 420" role="img" aria-labelledby="hersh-title hersh-desc">
                 <title id="hersh-title">Hersh architecture</title>
@@ -1090,88 +1102,11 @@
             </div>
             <div class="project-footer">
               <span>Reactive framework used by Hershy</span>
-              <span class="project-link-label">Source</span>
-            </div>
-          </a>
-
-          <a class="project-card" href="https://github.com/HershyOrg/hershy/graphs/contributors">
-            <div class="project-media">
-              <img
-                src="./assets/projects/hershy-dashboard.png"
-                alt="Hershy dashboard showing deployed program cards"
-                loading="lazy"
-              />
-            </div>
-            <div class="project-body">
-              <div class="project-topline">
-                <h3>Hershy</h3>
-                <span class="project-kind">Collaborative</span>
+              <div class="project-actions">
+                <a class="project-go" href="https://github.com/HershyOrg/hersh/graphs/contributors">Go</a>
               </div>
-              <p class="project-summary">
-                Container orchestration system for Go programs using Hersh
-                reactive state management, Docker/gVisor, Host API, and WatcherAPI.
-              </p>
-              <div class="tag-row">
-                <span class="tag">Go</span>
-                <span class="tag">Docker</span>
-                <span class="tag">gVisor</span>
-                <span class="tag">Runtime UI</span>
-              </div>
-              <ul class="evidence">
-                <li>Pure program state machine: Created to Building to Ready to Stopped.</li>
-                <li>Security contracts include read-only rootfs and localhost-only WatcherAPI proxy.</li>
-                <li>`rlaau` is the top listed contributor with 48 commits.</li>
-              </ul>
             </div>
-            <div class="project-footer">
-              <span>Secure program lifecycle management</span>
-              <span class="project-link-label">Source</span>
-            </div>
-          </a>
-        </div>
-      </section>
-
-      <section class="section" id="evidence" aria-labelledby="evidence-title">
-        <div class="section-head">
-          <div>
-            <h2 class="section-title" id="evidence-title">External Proof</h2>
-            <p class="section-note">
-              Three high-signal references: a public CURG presentation,
-              a measured Bloom filter result, and KOBAC news coverage.
-            </p>
-          </div>
-        </div>
-        <div class="proof-grid">
-          <a
-            class="proof-card"
-            id="proof-publicanalyzer"
-            href="https://www.youtube.com/watch?v=9_xKRzRfsUY&t=1033s"
-          >
-            <span class="proof-label">PublicAnalyzer</span>
-            <strong>CURG presentation</strong>
-            <span>Public presentation video for the wallet-clustering and graph-analysis work.</span>
-            <span class="proof-source">Open YouTube video</span>
-          </a>
-          <a
-            class="proof-card"
-            id="proof-benchmark"
-            href="https://github.com/rlaau/S_A_Benchmark/blob/main/bloomfilter/result.txt"
-          >
-            <span class="proof-label">S_A_Benchmark</span>
-            <strong>Bloom 4.77x</strong>
-            <span>Sharded Bloom filter result: 4.30x faster insertion and 4.77x overall throughput under the measured workload.</span>
-            <span class="proof-source">Open Bloom result</span>
-          </a>
-          <a
-            class="proof-card"
-            id="proof-kobac"
-            href="https://www.blockmedia.co.kr/archives/857438"
-          >
-            <span class="proof-label">Blockchain Valley</span>
-            <strong>KOBAC context</strong>
-            <span>News coverage is kept as strong external proof for the KOBAC competition context and project validation.</span>
-            <span class="proof-source">Open article</span>
-          </a>
+          </article>
         </div>
       </section>
 
@@ -1257,30 +1192,16 @@
         window.setTimeout(() => element.classList.remove(className), delay);
       };
 
-      const markProof = (id) => {
-        const proof = document.getElementById(id);
-        if (!proof) return;
-        proof.classList.remove("evidence-hit");
-        void proof.offsetWidth;
-        proof.classList.add("evidence-hit");
-        clearClassLater(proof, "evidence-hit", 1250);
-      };
-
-      document.querySelectorAll(".project-card").forEach((card) => {
-        card.addEventListener("click", () => {
+      document.querySelectorAll(".project-go").forEach((link) => {
+        link.addEventListener("click", () => {
+          const card = link.closest(".project-card");
+          if (!card) return;
           card.classList.remove("is-clicked");
           void card.offsetWidth;
           card.classList.add("is-clicked");
           clearClassLater(card, "is-clicked", 440);
-          if (card.dataset.proofTarget) {
-            window.setTimeout(() => markProof(card.dataset.proofTarget), 360);
-          }
         });
       });
-
-      if (window.location.hash) {
-        markProof(window.location.hash.slice(1));
-      }
     </script>
   </body>
 </html>
