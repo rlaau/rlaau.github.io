@@ -440,19 +440,12 @@
           transform 160ms ease;
       }
 
-      .proof-card:nth-child(2),
-      .proof-card:nth-child(6) {
+      .proof-card:nth-child(2) {
         border-left-color: var(--green);
       }
 
-      .proof-card:nth-child(3),
-      .proof-card:nth-child(7) {
+      .proof-card:nth-child(3) {
         border-left-color: var(--red);
-      }
-
-      .proof-card:nth-child(4),
-      .proof-card:nth-child(8) {
-        border-left-color: var(--yellow);
       }
 
       .proof-card::after {
@@ -928,7 +921,7 @@
             </div>
           </a>
 
-          <a class="project-card" href="#proof-gno" data-proof-target="proof-gno">
+          <a class="project-card" href="https://github.com/gnolang/gno/pull/3769">
             <div class="project-media">
               <img
                 src="./assets/projects/gno-fuzzer-algorithm.png"
@@ -959,11 +952,11 @@
             </div>
             <div class="project-footer">
               <span>Large proposed contribution to gnolang/gno</span>
-              <span class="project-link-label">Proof</span>
+              <span class="project-link-label">Source</span>
             </div>
           </a>
 
-          <a class="project-card" href="#proof-hersh" data-proof-target="proof-hersh">
+          <a class="project-card" href="https://github.com/HershyOrg/hersh/graphs/contributors">
             <div class="project-media contain">
               <svg viewBox="0 0 900 420" role="img" aria-labelledby="hersh-title hersh-desc">
                 <title id="hersh-title">Hersh architecture</title>
@@ -1012,11 +1005,11 @@
             </div>
             <div class="project-footer">
               <span>Reactive framework used by Hershy</span>
-              <span class="project-link-label">Proof</span>
+              <span class="project-link-label">Source</span>
             </div>
           </a>
 
-          <a class="project-card" href="#proof-hershy" data-proof-target="proof-hershy">
+          <a class="project-card" href="https://github.com/HershyOrg/hershy/graphs/contributors">
             <div class="project-media">
               <img
                 src="./assets/projects/hershy-dashboard.png"
@@ -1047,7 +1040,7 @@
             </div>
             <div class="project-footer">
               <span>Secure program lifecycle management</span>
-              <span class="project-link-label">Proof</span>
+              <span class="project-link-label">Source</span>
             </div>
           </a>
         </div>
@@ -1058,8 +1051,8 @@
           <div>
             <h2 class="section-title" id="evidence-title">External Proof</h2>
             <p class="section-note">
-              Public talks, news coverage, measured result files, and code-level checks.
-              Project cards above jump here first so claims can be inspected before opening sources.
+              Three high-signal references: a public CURG presentation,
+              a measured Bloom filter result, and KOBAC news coverage.
             </p>
           </div>
         </div>
@@ -1067,12 +1060,12 @@
           <a
             class="proof-card"
             id="proof-publicanalyzer"
-            href="https://github.com/rlaau/PublicAnalyzer#introduction-video-link"
+            href="https://www.youtube.com/watch?v=9_xKRzRfsUY&t=1033s"
           >
             <span class="proof-label">PublicAnalyzer</span>
-            <strong>CURG + graph proof</strong>
-            <span>The public presentation is a first-class external proof source, paired with the repository graph demo.</span>
-            <span class="proof-source">Open repository proof</span>
+            <strong>CURG presentation</strong>
+            <span>Public presentation video for the wallet-clustering and graph-analysis work.</span>
+            <span class="proof-source">Open YouTube video</span>
           </a>
           <a
             class="proof-card"
@@ -1086,16 +1079,6 @@
           </a>
           <a
             class="proof-card"
-            id="proof-kvdb"
-            href="https://github.com/rlaau/S_A_Benchmark/blob/main/kvdb/benchmark.txt"
-          >
-            <span class="proof-label">S_A_Benchmark KVDB</span>
-            <strong>200M KV workload</strong>
-            <span>Append/read benchmark compares BoltDB, sharded BoltDB, and BadgerDB; BadgerDB records 5.70 GB for 200M entries.</span>
-            <span class="proof-source">Open KVDB result</span>
-          </a>
-          <a
-            class="proof-card"
             id="proof-kobac"
             href="https://www.blockmedia.co.kr/archives/857438"
           >
@@ -1103,56 +1086,6 @@
             <strong>KOBAC context</strong>
             <span>News coverage is kept as strong external proof for the KOBAC competition context and project validation.</span>
             <span class="proof-source">Open article</span>
-          </a>
-          <a
-            class="proof-card"
-            id="proof-gno"
-            href="https://github.com/gnolang/gno/pull/3769"
-          >
-            <span class="proof-label">Gno Fuzzer</span>
-            <strong>External PR</strong>
-            <span>Public pull request for the GnoVM-native fuzzing path, CLI flow, mutation, and scheduling work.</span>
-            <span class="proof-source">Open pull request</span>
-          </a>
-          <a
-            class="proof-card"
-            id="proof-hersh"
-            href="https://github.com/HershyOrg/hersh/graphs/contributors"
-          >
-            <span class="proof-label">Hersh</span>
-            <strong>31 commits</strong>
-            <span>Contributor graph lists rlaau as the only contributor; README and tests cover WatchCall, WatchFlow, WatchTick, and manager behavior.</span>
-            <span class="proof-source">Open contributors</span>
-          </a>
-          <a
-            class="proof-card"
-            id="proof-hershy"
-            href="https://github.com/HershyOrg/hershy/graphs/contributors"
-          >
-            <span class="proof-label">Hershy</span>
-            <strong>48 commits</strong>
-            <span>Contributor graph lists rlaau as top contributor; repository includes program lifecycle, gVisor, API, and monitoring modules.</span>
-            <span class="proof-source">Open contributors</span>
-          </a>
-          <a
-            class="proof-card"
-            id="proof-tps"
-            href="https://github.com/rlaau/PublicAnalyzer/blob/main/internal/dxan/rel/triplet/debug/debug_benchmark.md"
-          >
-            <span class="proof-label">PublicAnalyzer load target</span>
-            <strong>50k TPS config</strong>
-            <span>Debug benchmark config sets 2,000,000 total transactions and 50,000 tx/sec. Treat it as generator target, not achieved throughput.</span>
-            <span class="proof-source">Open benchmark note</span>
-          </a>
-          <a
-            class="proof-card"
-            id="proof-sort"
-            href="https://github.com/rlaau/S_A_Benchmark/blob/main/sort/result.txt"
-          >
-            <span class="proof-label">Sort benchmark audit</span>
-            <strong>Peak goroutines fixed</strong>
-            <span>Updated sort result now reports maximum goroutine counts and serial-vs-parallel speedups; this remains secondary to Bloom and KVDB.</span>
-            <span class="proof-source">Open sort result</span>
           </a>
         </div>
       </section>
@@ -1248,13 +1181,15 @@
         clearClassLater(proof, "evidence-hit", 1250);
       };
 
-      document.querySelectorAll(".project-card[data-proof-target]").forEach((card) => {
+      document.querySelectorAll(".project-card").forEach((card) => {
         card.addEventListener("click", () => {
           card.classList.remove("is-clicked");
           void card.offsetWidth;
           card.classList.add("is-clicked");
           clearClassLater(card, "is-clicked", 440);
-          window.setTimeout(() => markProof(card.dataset.proofTarget), 360);
+          if (card.dataset.proofTarget) {
+            window.setTimeout(() => markProof(card.dataset.proofTarget), 360);
+          }
         });
       });
 
