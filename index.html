@@ -800,8 +800,8 @@
           <div>
             <h2 class="section-title" id="work-title">Featured Work</h2>
             <p class="section-note">
-              Six core projects: three owned repositories and three external or
-              collaborative contributions. Each is selected for technical depth,
+              Selected projects across owned repositories, external contributions,
+              and collaborative systems. Each is selected for technical depth,
               not polish alone.
             </p>
           </div>
@@ -903,6 +903,71 @@
             <div class="project-footer">
               <span>Extreme distribution performance research</span>
               <span class="project-link-label">Proof</span>
+            </div>
+          </a>
+
+          <a class="project-card" href="https://github.com/rlaau/language_test">
+            <div class="project-media contain">
+              <svg viewBox="0 0 900 420" role="img" aria-labelledby="language-title language-desc">
+                <title id="language-title">Tiny Go language pipeline</title>
+                <desc id="language-desc">Hand-built lexer, parser, resolver, and evaluator pipeline</desc>
+                <rect width="900" height="420" fill="#f7f8fa" />
+                <g font-family="Inter, system-ui, sans-serif">
+                  <text x="86" y="58" font-size="28" font-weight="780" fill="#12161c">
+                    language_test
+                  </text>
+                  <text x="86" y="91" font-size="15" font-weight="500" fill="#5f6874">
+                    Tiny Go implementation built by hand in Go
+                  </text>
+                  <g transform="translate(76 150)" font-size="16" font-weight="760">
+                    <rect x="0" y="0" width="135" height="74" rx="8" fill="#ffffff" stroke="#d9dee5" />
+                    <text x="37" y="44" fill="#12161c">source</text>
+                    <path d="M135 37 H178" stroke="#1e5b9e" stroke-width="5" />
+                    <rect x="178" y="0" width="135" height="74" rx="8" fill="#ffffff" stroke="#d9dee5" />
+                    <text x="222" y="44" fill="#12161c">lexer</text>
+                    <path d="M313 37 H356" stroke="#12765b" stroke-width="5" />
+                    <rect x="356" y="0" width="135" height="74" rx="8" fill="#ffffff" stroke="#d9dee5" />
+                    <text x="402" y="44" fill="#12161c">parser</text>
+                    <path d="M491 37 H534" stroke="#a63d36" stroke-width="5" />
+                    <rect x="534" y="0" width="135" height="74" rx="8" fill="#ffffff" stroke="#d9dee5" />
+                    <text x="571" y="44" fill="#12161c">resolver</text>
+                    <path d="M669 37 H712" stroke="#d69b2d" stroke-width="5" />
+                    <rect x="712" y="0" width="135" height="74" rx="8" fill="#12161c" />
+                    <text x="744" y="44" fill="#ffffff">evaluator</text>
+                  </g>
+                  <g transform="translate(88 282)" fill="#5f6874" font-size="15" font-weight="600">
+                    <text x="0" y="0">static scoping</text>
+                    <text x="188" y="0">init-order hoisting</text>
+                    <text x="408" y="0">multi-return assignment</text>
+                    <text x="660" y="0">built-ins</text>
+                  </g>
+                </g>
+              </svg>
+            </div>
+            <div class="project-body">
+              <div class="project-topline">
+                <h3>language_test</h3>
+                <span class="project-kind">Owned</span>
+              </div>
+              <p class="project-summary">
+                Tiny Go language implementation in Go, built around a manual
+                lexer, parser, resolver, and evaluator pipeline.
+              </p>
+              <div class="tag-row">
+                <span class="tag">Go</span>
+                <span class="tag">Tiny Go</span>
+                <span class="tag">Lexer</span>
+                <span class="tag">Parser</span>
+              </div>
+              <ul class="evidence">
+                <li>`tinygo` pipeline is hand-built as lexer, parser, resolver, and evaluator stages.</li>
+                <li>Spec covers Go-like syntax, static scoping, init-order hoisting, errors, built-ins, and multi-return assignment.</li>
+                <li>Tests cover parsing, token tape behavior, resolver rules, and evaluator behavior.</li>
+              </ul>
+            </div>
+            <div class="project-footer">
+              <span>Hand-built language implementation</span>
+              <span class="project-link-label">Source</span>
             </div>
           </a>
 
