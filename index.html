@@ -15,9 +15,9 @@
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://rlaau.github.io/" />
-    <link rel="icon" href="./favicon.svg?v=3" type="image/svg+xml" />
-    <link rel="alternate icon" href="./favicon.ico?v=3" />
-    <link rel="shortcut icon" href="./favicon.ico?v=3" />
+    <link rel="icon" href="./favicon.svg?v=4" type="image/svg+xml" />
+    <link rel="alternate icon" href="./favicon.ico?v=4" />
+    <link rel="shortcut icon" href="./favicon.ico?v=4" />
     <link rel="apple-touch-icon" href="./logo192.png" />
     <link rel="manifest" href="./manifest.json" />
     <title>rlaau</title>
@@ -255,6 +255,7 @@
       }
 
       .project-card {
+        position: relative;
         display: grid;
         grid-template-rows: auto 1fr auto;
         min-height: 100%;
@@ -277,6 +278,19 @@
         box-shadow: 0 8px 22px rgba(17, 20, 24, 0.06);
         text-decoration: none;
         transform: translateY(-1px);
+      }
+
+      .project-card::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(37, 95, 145, 0.12);
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .project-card.is-clicked::after {
+        animation: click-fade 420ms ease;
       }
 
       .project-card:focus-visible {
@@ -398,43 +412,75 @@
         font-weight: 760;
       }
 
-      .metric-band {
+      .proof-grid {
         display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
+        grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 14px;
         margin-top: 22px;
       }
 
-      .metric {
+      .proof-card {
+        position: relative;
+        min-height: 100%;
         border-left: 4px solid var(--blue);
         background: var(--panel);
         border-radius: var(--radius);
-        padding: 16px;
+        padding: 17px 42px 17px 16px;
         border-top: 1px solid var(--line);
         border-right: 1px solid var(--line);
         border-bottom: 1px solid var(--line);
         box-shadow: var(--shadow);
+        color: inherit;
+        text-decoration: none;
+        scroll-margin-top: 86px;
+        transition:
+          background 160ms ease,
+          border-color 160ms ease,
+          box-shadow 160ms ease,
+          transform 160ms ease;
       }
 
-      .metric:nth-child(2) {
+      .proof-card:nth-child(2),
+      .proof-card:nth-child(6) {
         border-left-color: var(--green);
       }
 
-      .metric:nth-child(3) {
+      .proof-card:nth-child(3),
+      .proof-card:nth-child(7) {
         border-left-color: var(--red);
       }
 
-      .metric:nth-child(4) {
+      .proof-card:nth-child(4),
+      .proof-card:nth-child(8) {
         border-left-color: var(--yellow);
       }
 
-      .metric strong {
+      .proof-card::after {
+        content: "↗";
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        color: #7a828c;
+        font-weight: 800;
+      }
+
+      .proof-card .proof-label {
         display: block;
+        margin-top: 0;
+        color: var(--muted);
+        font-size: 0.76rem;
+        font-weight: 780;
+        text-transform: uppercase;
+      }
+
+      .proof-card strong {
+        display: block;
+        margin-top: 8px;
         font-size: 1.45rem;
         line-height: 1.15;
       }
 
-      .metric span {
+      .proof-card span {
         display: block;
         margin-top: 6px;
         color: var(--muted);
@@ -442,16 +488,51 @@
         font-size: 0.9rem;
       }
 
-      a.metric {
-        color: inherit;
-        text-decoration: none;
+      .proof-card .proof-source {
+        color: var(--blue);
+        margin-top: 12px;
+        font-size: 0.84rem;
+        font-weight: 760;
       }
 
-      a.metric:hover {
+      .proof-card:hover {
         border-left-color: var(--ink);
         background: #fffefa;
         text-decoration: none;
         transform: translateY(-1px);
+      }
+
+      .proof-card:focus-visible {
+        outline: 3px solid rgba(30, 91, 158, 0.28);
+        outline-offset: 3px;
+      }
+
+      .proof-card.evidence-hit {
+        animation: evidence-pulse 1200ms ease;
+      }
+
+      @keyframes click-fade {
+        0% {
+          opacity: 0;
+        }
+        22% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+        }
+      }
+
+      @keyframes evidence-pulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(37, 95, 145, 0.24);
+        }
+        38% {
+          box-shadow: 0 0 0 8px rgba(37, 95, 145, 0.12);
+        }
+        100% {
+          box-shadow: var(--shadow);
+        }
       }
 
       .two-column {
@@ -585,7 +666,7 @@
           font-size: 3.05rem;
         }
 
-        .metric-band {
+        .proof-grid {
           grid-template-columns: repeat(2, minmax(0, 1fr));
         }
 
@@ -641,7 +722,7 @@
           height: 190px;
         }
 
-        .metric-band {
+        .proof-grid {
           grid-template-columns: 1fr;
         }
 
@@ -715,7 +796,7 @@
         </div>
 
         <div class="project-grid">
-          <a class="project-card" href="https://github.com/rlaau/PublicAnalyzer">
+          <a class="project-card" href="#proof-publicanalyzer" data-proof-target="proof-publicanalyzer">
             <div class="project-media">
               <img
                 src="./assets/projects/publicanalyzer-demo.png"
@@ -746,11 +827,11 @@
             </div>
             <div class="project-footer">
               <span>Wallet relation analysis and graph infrastructure</span>
-              <span class="project-link-label">Repository</span>
+              <span class="project-link-label">Proof</span>
             </div>
           </a>
 
-          <a class="project-card" href="https://github.com/rlaau/S_A_Benchmark">
+          <a class="project-card" href="#proof-benchmark" data-proof-target="proof-benchmark">
             <div class="project-media contain">
               <svg
                 viewBox="0 0 900 420"
@@ -778,7 +859,7 @@
                     </text>
                     <rect x="0" y="144" width="430" height="42" rx="6" fill="#a63d36" />
                     <text x="450" y="172" font-size="18" font-weight="700" fill="#12161c">
-                      200M DB ops
+                      200M KV ops
                     </text>
                   </g>
                 </g>
@@ -791,28 +872,28 @@
               </div>
               <p class="project-summary">
                 Benchmark suite for cases where ordinary benchmarks fail:
-                skewed blockchain-like data, cache-miss-heavy reads, and
-                append-only write paths.
+                sharded Bloom filters for blockchain-like skew and KVDB
+                workloads for append-heavy indexed storage.
               </p>
               <div class="tag-row">
                 <span class="tag">Go</span>
                 <span class="tag">Bloom filter</span>
                 <span class="tag">KV stores</span>
-                <span class="tag">Sorting</span>
+                <span class="tag">BadgerDB</span>
               </div>
               <ul class="evidence">
-                <li>Sharded Bloom filter measured at 4.30x faster insertion.</li>
-                <li>Includes bbolt, BadgerDB, and PebbleDB workload comparisons.</li>
-                <li>Tracks memory, throughput, false positive rate, and file workloads.</li>
+                <li>Sharded Bloom filter measured at 4.30x faster insertion and 4.77x overall throughput.</li>
+                <li>KVDB benchmark covers 200M append/read checks across BoltDB, sharded BoltDB, and BadgerDB.</li>
+                <li>BadgerDB keeps the 200M-entry benchmark at 5.70 GB versus BoltDB's 33.30 GB result.</li>
               </ul>
             </div>
             <div class="project-footer">
               <span>Extreme distribution performance research</span>
-              <span class="project-link-label">Repository</span>
+              <span class="project-link-label">Proof</span>
             </div>
           </a>
 
-          <a class="project-card" href="https://github.com/rlaau/blockchainBelly_B">
+          <a class="project-card" href="#proof-kobac" data-proof-target="proof-kobac">
             <div class="project-media">
               <img
                 src="./assets/projects/blockchanbelly-example.png"
@@ -843,11 +924,11 @@
             </div>
             <div class="project-footer">
               <span>AI, news, and token deployment pipeline</span>
-              <span class="project-link-label">Repository</span>
+              <span class="project-link-label">Proof</span>
             </div>
           </a>
 
-          <a class="project-card" href="https://github.com/gnolang/gno/pull/3769">
+          <a class="project-card" href="#proof-gno" data-proof-target="proof-gno">
             <div class="project-media">
               <img
                 src="./assets/projects/gno-fuzzer-algorithm.png"
@@ -878,11 +959,11 @@
             </div>
             <div class="project-footer">
               <span>Large proposed contribution to gnolang/gno</span>
-              <span class="project-link-label">Pull request</span>
+              <span class="project-link-label">Proof</span>
             </div>
           </a>
 
-          <a class="project-card" href="https://github.com/HershyOrg/hersh">
+          <a class="project-card" href="#proof-hersh" data-proof-target="proof-hersh">
             <div class="project-media contain">
               <svg viewBox="0 0 900 420" role="img" aria-labelledby="hersh-title hersh-desc">
                 <title id="hersh-title">Hersh architecture</title>
@@ -931,11 +1012,11 @@
             </div>
             <div class="project-footer">
               <span>Reactive framework used by Hershy</span>
-              <span class="project-link-label">Repository</span>
+              <span class="project-link-label">Proof</span>
             </div>
           </a>
 
-          <a class="project-card" href="https://github.com/HershyOrg/hershy">
+          <a class="project-card" href="#proof-hershy" data-proof-target="proof-hershy">
             <div class="project-media">
               <img
                 src="./assets/projects/hershy-dashboard.png"
@@ -966,7 +1047,7 @@
             </div>
             <div class="project-footer">
               <span>Secure program lifecycle management</span>
-              <span class="project-link-label">Repository</span>
+              <span class="project-link-label">Proof</span>
             </div>
           </a>
         </div>
@@ -977,28 +1058,102 @@
           <div>
             <h2 class="section-title" id="evidence-title">External Proof</h2>
             <p class="section-note">
-              Evidence should come from public technical settings, official
-              programs, and measured workloads, not just code volume.
+              Public talks, news coverage, measured result files, and code-level checks.
+              Project cards above jump here first so claims can be inspected before opening sources.
             </p>
           </div>
         </div>
-        <div class="metric-band">
-          <a class="metric" href="https://www.youtube.com/watch?v=9_xKRzRfsUY&t=1033s">
-            <strong>CURG</strong>
-            <span>Official presentation context for graph and program analysis work in a blockchain academy.</span>
+        <div class="proof-grid">
+          <a
+            class="proof-card"
+            id="proof-publicanalyzer"
+            href="https://github.com/rlaau/PublicAnalyzer#introduction-video-link"
+          >
+            <span class="proof-label">PublicAnalyzer</span>
+            <strong>CURG + graph proof</strong>
+            <span>The public presentation is a first-class external proof source, paired with the repository graph demo.</span>
+            <span class="proof-source">Open repository proof</span>
           </a>
-          <a class="metric" href="https://www.blockmedia.co.kr/archives/857438">
-            <strong>KOBAC</strong>
-            <span>Blockchain Belly was validated through the official KOBAC competition context.</span>
+          <a
+            class="proof-card"
+            id="proof-benchmark"
+            href="https://github.com/rlaau/S_A_Benchmark/blob/main/bloomfilter/result.txt"
+          >
+            <span class="proof-label">S_A_Benchmark</span>
+            <strong>Bloom 4.77x</strong>
+            <span>Sharded Bloom filter result: 4.30x faster insertion and 4.77x overall throughput under the measured workload.</span>
+            <span class="proof-source">Open Bloom result</span>
           </a>
-          <div class="metric">
-            <strong>4.77x</strong>
-            <span>Measured overall speedup in the sharded Bloom filter benchmark.</span>
-          </div>
-          <div class="metric">
-            <strong>50k TPS</strong>
-            <span>Transaction generator configuration used for PublicAnalyzer stress testing.</span>
-          </div>
+          <a
+            class="proof-card"
+            id="proof-kvdb"
+            href="https://github.com/rlaau/S_A_Benchmark/blob/main/kvdb/benchmark.txt"
+          >
+            <span class="proof-label">S_A_Benchmark KVDB</span>
+            <strong>200M KV workload</strong>
+            <span>Append/read benchmark compares BoltDB, sharded BoltDB, and BadgerDB; BadgerDB records 5.70 GB for 200M entries.</span>
+            <span class="proof-source">Open KVDB result</span>
+          </a>
+          <a
+            class="proof-card"
+            id="proof-kobac"
+            href="https://www.blockmedia.co.kr/archives/857438"
+          >
+            <span class="proof-label">Blockchain Belly</span>
+            <strong>KOBAC context</strong>
+            <span>News coverage is kept as strong external proof for the KOBAC competition context and project validation.</span>
+            <span class="proof-source">Open article</span>
+          </a>
+          <a
+            class="proof-card"
+            id="proof-gno"
+            href="https://github.com/gnolang/gno/pull/3769"
+          >
+            <span class="proof-label">Gno Fuzzer</span>
+            <strong>External PR</strong>
+            <span>Public pull request for the GnoVM-native fuzzing path, CLI flow, mutation, and scheduling work.</span>
+            <span class="proof-source">Open pull request</span>
+          </a>
+          <a
+            class="proof-card"
+            id="proof-hersh"
+            href="https://github.com/HershyOrg/hersh/graphs/contributors"
+          >
+            <span class="proof-label">Hersh</span>
+            <strong>31 commits</strong>
+            <span>Contributor graph lists rlaau as the only contributor; README and tests cover WatchCall, WatchFlow, WatchTick, and manager behavior.</span>
+            <span class="proof-source">Open contributors</span>
+          </a>
+          <a
+            class="proof-card"
+            id="proof-hershy"
+            href="https://github.com/HershyOrg/hershy/graphs/contributors"
+          >
+            <span class="proof-label">Hershy</span>
+            <strong>48 commits</strong>
+            <span>Contributor graph lists rlaau as top contributor; repository includes program lifecycle, gVisor, API, and monitoring modules.</span>
+            <span class="proof-source">Open contributors</span>
+          </a>
+          <a
+            class="proof-card"
+            id="proof-tps"
+            href="https://github.com/rlaau/PublicAnalyzer/blob/main/internal/dxan/rel/triplet/debug/debug_benchmark.md"
+          >
+            <span class="proof-label">PublicAnalyzer load target</span>
+            <strong>50k TPS config</strong>
+            <span>Debug benchmark config sets 2,000,000 total transactions and 50,000 tx/sec. Treat it as generator target, not achieved throughput.</span>
+            <span class="proof-source">Open benchmark note</span>
+          </a>
+          <a
+            class="proof-card"
+            id="proof-sort"
+            href="https://github.com/rlaau/S_A_Benchmark/blob/main/sort/result.txt"
+          >
+            <span class="proof-label">Sort benchmark audit</span>
+            <strong>Peak goroutines fixed</strong>
+            <span>Updated sort result now reports maximum goroutine counts and serial-vs-parallel speedups; this remains secondary to Bloom and KVDB.</span>
+            <span class="proof-source">Open sort result</span>
+          </a>
         </div>
       </section>
 
@@ -1079,5 +1234,33 @@
         </div>
       </section>
     </footer>
+    <script>
+      const clearClassLater = (element, className, delay) => {
+        window.setTimeout(() => element.classList.remove(className), delay);
+      };
+
+      const markProof = (id) => {
+        const proof = document.getElementById(id);
+        if (!proof) return;
+        proof.classList.remove("evidence-hit");
+        void proof.offsetWidth;
+        proof.classList.add("evidence-hit");
+        clearClassLater(proof, "evidence-hit", 1250);
+      };
+
+      document.querySelectorAll(".project-card[data-proof-target]").forEach((card) => {
+        card.addEventListener("click", () => {
+          card.classList.remove("is-clicked");
+          void card.offsetWidth;
+          card.classList.add("is-clicked");
+          clearClassLater(card, "is-clicked", 440);
+          window.setTimeout(() => markProof(card.dataset.proofTarget), 360);
+        });
+      });
+
+      if (window.location.hash) {
+        markProof(window.location.hash.slice(1));
+      }
+    </script>
   </body>
 </html>
