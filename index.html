@@ -165,6 +165,13 @@
         color: var(--ink);
         font-weight: 680;
         font-size: 0.94rem;
+        text-decoration: none;
+        transition:
+          background 150ms ease,
+          border-color 150ms ease,
+          box-shadow 150ms ease,
+          color 150ms ease,
+          transform 150ms ease;
       }
 
       .button.primary {
@@ -174,9 +181,22 @@
       }
 
       .button:hover {
-        text-decoration: none;
-        border-color: #b7bdc5;
-        background: #f9f8f4;
+        border-color: #aeb5bd;
+        background: #ffffff;
+        box-shadow: 0 8px 18px rgba(18, 22, 28, 0.08);
+        color: var(--ink);
+        transform: translateY(-1px);
+      }
+
+      .button.primary:hover {
+        background: #242a31;
+        border-color: #242a31;
+        color: #ffffff;
+      }
+
+      .button:active {
+        box-shadow: none;
+        transform: translateY(0);
       }
 
       .hero-meta {
